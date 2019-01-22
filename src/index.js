@@ -1,11 +1,14 @@
-import { generate, presetPalettes } from '@ant-design/colors';
+import {
+  generate,
+  presetPalettes
+} from '@ant-design/colors';
 
 // dom
 const $colorInput = document.getElementById('color-input');
 const $colorValue = document.getElementById('color-value');
 const $colorPie = document.getElementById('color-pie');
 const $colorWrap = document.getElementById('color-wrap');
-const $ul = document.createElement('ul'); 
+const $ul = document.createElement('ul');
 $colorWrap.appendChild($ul);
 
 // init list
@@ -15,23 +18,23 @@ generateColorList(generate(generateColor));
 
 // init pie
 $colorPie.innerHTML = '';
-for(let item in presetPalettes) {
+for (let item in presetPalettes) {
   let $pieLi = document.createElement('div');
   $pieLi.className = `slice-li`;
   $pieLi.innerHTML = `${item}<br/>${presetPalettes[item][5]}`;
   $pieLi.style.background = presetPalettes[item][5];
-  $pieLi.onclick = function() {
+  $pieLi.onclick = function () {
     $colorInput.value = presetPalettes[item][5];
     generateColor = presetPalettes[item][5];
     $colorValue.innerHTML = generateColor;
     let colorList = presetPalettes[item];
     generateColorList(colorList);
   }
-    $colorPie.appendChild($pieLi)
-  }
+  $colorPie.appendChild($pieLi)
+}
 
 // change color input
-$colorInput.onchange = function() {
+$colorInput.onchange = function () {
   generateColor = this.value;
   $colorValue.innerHTML = generateColor;
   let colorList = generate(generateColor);
@@ -41,12 +44,12 @@ $colorInput.onchange = function() {
 // generate color list
 function generateColorList(colorList) {
   $ul.innerHTML = '';
-  for(let i = 0; i < colorList.length; i++) {
+  for (let i = 0; i < colorList.length; i++) {
     let $li = document.createElement('li');
     $li.style.background = colorList[i];
     $li.innerHTML = colorList[i];
     $li.className = 'color-li';
-    $li.onclick = function() {
+    $li.onclick = function () {
       let copyText = this.innerText;
       const $tempInput = document.createElement('input');
       $tempInput.value = copyText;

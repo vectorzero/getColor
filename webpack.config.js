@@ -1,10 +1,9 @@
 const path = require('path');
-const HtmlWebPackPlugin = require("html-webpack-plugin");  
+const HtmlWebPackPlugin = require("html-webpack-plugin");
 const webpack = require('webpack');
 module.exports = {
   module: {
-    rules: [
-      {
+    rules: [{
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
@@ -13,12 +12,12 @@ module.exports = {
       },
       {
         test: /\.html$/,
-        use: [
-          {
-            loader: "html-loader",
-            options: { minimize: true }
+        use: [{
+          loader: "html-loader",
+          options: {
+            minimize: true
           }
-        ]
+        }]
       }
     ]
   },
